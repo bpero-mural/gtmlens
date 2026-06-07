@@ -4,13 +4,21 @@ Stage 1A uses Salesforce CLI for a local metadata probe. OAuth and token storage
 
 ## Authenticate Outside GTM Lens
 
-Use Salesforce CLI on the host or inside an environment where `sf` is available:
+Use Salesforce CLI on the host:
 
 ```bash
-sf org login web --alias stage
+sf org login web --alias stage --instance-url https://mural--stage.sandbox.my.salesforce.com
 ```
 
-GTM Lens does not store Salesforce access tokens or refresh tokens in Stage 1A.
+The Docker app image includes Salesforce CLI. Host CLI config is mounted read-only at `/host/.sf` and `/host/.sfdx`; Docker-managed volumes are mounted at `/root/.sf` and `/root/.sfdx` so Linux file permissions are valid. The probe can reuse the authenticated CLI alias, but GTM Lens does not store Salesforce access tokens or refresh tokens in its database in Stage 1A.
+
+## Import Host CLI Config
+
+After logging in on Windows, import the CLI config into Docker-managed volumes:
+
+```bash
+docker compose exec app sh -lc "cp -a /host/.sf/. /root/.sf/ 2>/dev/null || true; cp -a /host/.sfdx/. /root/.sfdx/ 2>/dev/null || true; chmod 700 /root/.sf /root/.sfdx; chmod 600 /root/.sfdx/key.json 2>/dev/null || true"
+```
 
 ## Run The Probe
 
@@ -25,6 +33,15 @@ Snapshots are stored under:
 ```text
 storage/app/snapshots/{orgAlias}/{syncRunId}/
 ```
+
+## Storage Direction
+
+GTM Lens uses a hybrid metadata storage direction:
+
+- Raw snapshots preserve source-of-truth Salesforce responses and, in later stages, SFDX-style metadata source files.
+- Normalized PostgreSQL tables store searchable and reportable metadata extracted from snapshots.
+
+Stage 1A stores raw CLI JSON snapshots only. Later stages should add Salesforce CLI source retrieve, then parsers that populate normalized tables for objects, fields, Apex, flows, validation rules, dependencies, and dictionary workflows.
 
 ## Allowed Metadata Objects
 

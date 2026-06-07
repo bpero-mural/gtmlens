@@ -24,6 +24,9 @@ RUN apt-get update \
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 COPY --from=node /usr/local /usr/local
 
+RUN npm install --global @salesforce/cli \
+    && npm cache clean --force
+
 WORKDIR /var/www/html
 
 COPY docker/php/entrypoint.sh /usr/local/bin/gtm-lens-entrypoint

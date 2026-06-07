@@ -21,7 +21,7 @@ The app is a Docker-first Laravel modular monolith foundation:
 - Blade
 - Livewire 4
 - Tailwind CSS
-- Local email/password auth
+- local email/password auth
 - Database queues
 - Laravel scheduler
 - Stage 0 core schema
@@ -31,7 +31,7 @@ The app is a Docker-first Laravel modular monolith foundation:
 
 Stage 0 auth is intentionally simple.
 
-- URL: `http://localhost/login`
+- URL: `http://localhost:8080/login`
 - Email: `admin@example.test`
 - Password: `password`
 

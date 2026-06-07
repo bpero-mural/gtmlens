@@ -12,18 +12,16 @@ This roadmap is directional. Keep implementation gated by explicit stage approva
 
 ## In Progress
 
-- Salesforce CLI metadata probe.
+- Salesforce CLI metadata probe validation against the real `stage` org.
 - Strict metadata query allowlist.
 - Local JSON snapshots for probe output.
 - Read-only Salesforce org and sync run tables.
 
 ## Planned MVP Capabilities
 
-- Salesforce OAuth connection after the CLI probe validates useful metadata.
-- Encrypted Salesforce token storage.
-- Manual sync command for connected orgs.
+- Stage 1B SFDX-style raw metadata source retrieve through Salesforce CLI.
+- Stage 1C metadata normalization into PostgreSQL from raw snapshots/source files.
 - Metadata collectors for objects, fields, validation rules, Apex, and flows.
-- Metadata normalization into PostgreSQL.
 - Metadata search using PostgreSQL full-text search and `pg_trgm`.
 - Metadata detail cards.
 - Data dictionary with owners, definitions, classification, criticality, lifecycle status, and tags.
@@ -31,6 +29,17 @@ This roadmap is directional. Keep implementation gated by explicit stage approva
 - Change timeline between syncs.
 - Basic potential issue detection.
 - Audit logs and policies for sensitive actions.
+- Salesforce OAuth connection only after the CLI path validates useful metadata and permission boundaries.
+- Encrypted Salesforce token storage only when OAuth is intentionally introduced.
+
+## Storage Direction
+
+GTM Lens should keep both forms of metadata:
+
+- Raw snapshots/source files preserve the canonical Salesforce metadata shape and support future diffs and re-parsing.
+- Normalized PostgreSQL tables power search, UI, dictionary workflows, dependency analysis, reporting, and comparisons.
+
+The database should be an interpreted index of the raw snapshot, not the only copy of metadata.
 
 ## Future Capabilities
 

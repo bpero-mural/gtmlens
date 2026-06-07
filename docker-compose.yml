@@ -8,6 +8,7 @@ services:
       APP_ENV: local
       APP_DEBUG: "true"
       APP_URL: http://localhost
+      SF_AUTOUPDATE_DISABLE: "true"
       DB_CONNECTION: pgsql
       DB_HOST: postgres
       DB_PORT: 5432
@@ -27,6 +28,10 @@ services:
       LOCAL_ADMIN_ENSURE_ON_BOOT: "true"
     volumes:
       - .:/var/www/html
+      - salesforce_cli_sf:/root/.sf
+      - ${USERPROFILE}/.sf:/host/.sf:ro
+      - salesforce_cli_sfdx:/root/.sfdx
+      - ${USERPROFILE}/.sfdx:/host/.sfdx:ro
       - app_node_modules:/var/www/html/node_modules
       - snapshot_storage:/var/www/html/storage/app/snapshots
     ports:
@@ -43,7 +48,7 @@ services:
   web:
     image: nginx:1.29-alpine
     ports:
-      - "80:80"
+      - "8080:80"
     volumes:
       - .:/var/www/html:ro
       - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
@@ -74,3 +79,5 @@ volumes:
   app_node_modules:
   postgres_data:
   snapshot_storage:
+  salesforce_cli_sf:
+  salesforce_cli_sfdx:
