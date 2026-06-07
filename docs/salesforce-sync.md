@@ -51,6 +51,12 @@ storage/app/snapshots/{orgAlias}/{syncRunId}/source/
 
 This command records a `sync_run` with `triggered_by = cli_source_retrieve` and one `metadata_snapshots` row with `snapshot_type = source_retrieve`.
 
+## VS Code Coverage Comparison Manifest
+
+Use `manifest/gtm-lens-vscode-compare.xml` when you want to retrieve metadata from VS Code/SFDX and compare the result with GTM Lens. It includes the Stage 1D normalized types plus adjacent metadata that is useful for the Stage 1D.2 coverage audit, such as quick actions, FlexiPages, LWC, Aura bundles, record types, permission sets, profiles, email templates, and custom applications.
+
+This comparison manifest is metadata-only. It must not be used to retrieve Salesforce business record data.
+
 
 ## Normalize Source
 
