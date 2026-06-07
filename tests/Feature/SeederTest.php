@@ -48,7 +48,7 @@ class SeederTest extends TestCase
             'role' => 'viewer',
         ]);
 
-        $this->artisan('mural:ensure-local-admin')
+        $this->artisan('gtm:ensure-local-admin')
             ->assertSuccessful();
 
         $admin = User::query()->where('email', 'admin@example.test')->firstOrFail();

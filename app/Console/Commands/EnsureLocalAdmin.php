@@ -7,7 +7,7 @@ use Illuminate\Console\Command;
 
 class EnsureLocalAdmin extends Command
 {
-    protected $signature = 'mural:ensure-local-admin';
+    protected $signature = 'gtm:ensure-local-admin';
 
     protected $description = 'Create or reset the local development admin user.';
 

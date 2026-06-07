@@ -2,7 +2,7 @@
 
 Stage 1A uses Salesforce CLI for a local metadata probe. OAuth and token storage are intentionally not implemented yet.
 
-## Authenticate Outside Mural Lens
+## Authenticate Outside GTM Lens
 
 Use Salesforce CLI on the host or inside an environment where `sf` is available:
 
@@ -10,7 +10,7 @@ Use Salesforce CLI on the host or inside an environment where `sf` is available:
 sf org login web --alias stage
 ```
 
-Mural Lens does not store Salesforce access tokens or refresh tokens in Stage 1A.
+GTM Lens does not store Salesforce access tokens or refresh tokens in Stage 1A.
 
 ## Run The Probe
 

@@ -1,8 +1,8 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "mural/mural-lens",
+    "name": "bpero-mural/gtmlens",
     "type": "project",
-    "description": "Internal Salesforce metadata lens for Mural.",
+    "description": "Internal Salesforce metadata lens for GTM teams.",
     "keywords": ["laravel", "salesforce", "metadata"],
     "license": "MIT",
     "require": {

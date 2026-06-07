@@ -6,7 +6,7 @@ Accepted.
 
 ## Decision
 
-Build Mural Lens as a Laravel modular monolith.
+Build GTM Lens as a Laravel modular monolith.
 
 ## Consequences
 

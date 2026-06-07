@@ -1,6 +1,6 @@
-# Mural Lens
+# GTM Lens
 
-Mural Lens is an internal Laravel application for Salesforce metadata discovery, documentation, and impact analysis. Stage 0 creates only the local Docker foundation: auth, layout, migrations, queues, scheduler commands, docs, and tests.
+GTM Lens is an internal Laravel application for Salesforce metadata discovery, documentation, and impact analysis. Stage 0 creates only the local Docker foundation: auth, layout, migrations, queues, scheduler commands, docs, and tests.
 
 ## Requirements
 
@@ -25,7 +25,7 @@ Open `http://localhost` and sign in with:
 The app container resets this local development admin on boot. If the local database was edited manually, repair it with:
 
 ```bash
-docker compose exec app php artisan mural:ensure-local-admin
+docker compose exec app php artisan gtm:ensure-local-admin
 ```
 
 ## Common Commands
@@ -67,7 +67,7 @@ Stage 0 does not implement Salesforce OAuth, metadata sync, collectors, search b
 
 ## Stage 1A CLI Metadata Probe
 
-Authenticate a Salesforce org outside Mural Lens with Salesforce CLI:
+Authenticate a Salesforce org outside GTM Lens with Salesforce CLI:
 
 ```bash
 sf org login web --alias stage

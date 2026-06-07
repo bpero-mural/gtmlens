@@ -26,8 +26,8 @@ COPY --from=node /usr/local /usr/local
 
 WORKDIR /var/www/html
 
-COPY docker/php/entrypoint.sh /usr/local/bin/mural-lens-entrypoint
-RUN chmod +x /usr/local/bin/mural-lens-entrypoint
+COPY docker/php/entrypoint.sh /usr/local/bin/gtm-lens-entrypoint
+RUN chmod +x /usr/local/bin/gtm-lens-entrypoint
 
-ENTRYPOINT ["mural-lens-entrypoint"]
+ENTRYPOINT ["gtm-lens-entrypoint"]
 CMD ["php-fpm"]

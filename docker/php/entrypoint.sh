@@ -29,7 +29,7 @@ if [ -f package.json ] && [ ! -f public/build/manifest.json ]; then
 fi
 
 if [ "${APP_ENV:-local}" = "local" ] && [ "${LOCAL_ADMIN_ENSURE_ON_BOOT:-true}" = "true" ]; then
-    php artisan mural:ensure-local-admin --no-interaction || true
+    php artisan gtm:ensure-local-admin --no-interaction || true
 fi
 
 exec "$@"

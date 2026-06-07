@@ -9,7 +9,7 @@
                         <x-ui.badge tone="teal">Healthy foundation</x-ui.badge>
                         <x-ui.badge tone="amber">No Salesforce sync yet</x-ui.badge>
                     </div>
-                    <h2 class="mt-4 text-2xl font-semibold text-slate-950">Mural Lens is ready for controlled metadata work.</h2>
+                    <h2 class="mt-4 text-2xl font-semibold text-slate-950">GTM Lens is ready for controlled metadata work.</h2>
                     <p class="mt-2 text-sm leading-6 text-slate-600">Stage 0 establishes the local application surface, database foundation, auth boundary, and design contract before any Salesforce connection is introduced.</p>
                 </div>
 

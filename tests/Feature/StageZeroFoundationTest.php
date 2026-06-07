@@ -62,7 +62,7 @@ class StageZeroFoundationTest extends TestCase
 
         $this->assertSame('22', trim(file_get_contents(base_path('.nvmrc'))));
         $this->assertSame('>=22 <23', $package['engines']['node']);
-        $this->assertStringContainsString('APP_NAME="Mural Lens"', $envExample);
+        $this->assertStringContainsString('APP_NAME="GTM Lens"', $envExample);
         $this->assertStringContainsString('DB_CONNECTION=pgsql', $envExample);
         $this->assertStringContainsString('QUEUE_CONNECTION=database', $envExample);
         $this->assertStringContainsString('SECURITY_ALLOW_APEX_STORAGE=false', $envExample);
@@ -76,7 +76,6 @@ class StageZeroFoundationTest extends TestCase
         $licenses = file_get_contents(base_path('docs/license-policy.md'));
         $sync = file_get_contents(base_path('docs/salesforce-sync.md'));
         $design = file_get_contents(base_path('DESIGN.md'));
-        $claude = file_get_contents(base_path('CLAUDE.md'));
         $agents = file_get_contents(base_path('AGENTS.md'));
 
         $this->assertStringContainsString('must not read Salesforce business record data', $security);
@@ -84,15 +83,16 @@ class StageZeroFoundationTest extends TestCase
         $this->assertStringContainsString('OpenSearch', $licenses);
         $this->assertStringContainsString('OAuth and token storage are intentionally not implemented yet', $sync);
         $this->assertStringContainsString('The MVP must not query or store Salesforce business record data', $sync);
-        $this->assertStringContainsString('Mural Lens Design System', $design);
+        $this->assertStringContainsString('GTM Lens Design System', $design);
         $this->assertStringContainsString('no Salesforce business record data', $design);
-        $this->assertStringContainsString('Google DESIGN.md Legal And Vendor Boundary', $claude);
-        $this->assertStringContainsString('not legal advice', $claude);
-        $this->assertStringContainsString('Not allowed in the MVP: uploading screenshots', $claude);
-        $this->assertStringContainsString('local email/password login only', $claude);
+        $this->assertStringContainsString('Google DESIGN.md Legal And Vendor Boundary', $agents);
+        $this->assertStringContainsString('not legal advice', $agents);
+        $this->assertStringContainsString('Not allowed in the MVP: uploading screenshots', $agents);
+        $this->assertStringContainsString('local email/password auth', $agents);
         $this->assertStringContainsString('first file agents should read', $agents);
         $this->assertStringContainsString('admin@example.test', $agents);
         $this->assertStringContainsString('Stage 1A Salesforce CLI metadata probe', $agents);
+        $this->assertFileDoesNotExist(base_path('CLAUDE.md'));
     }
 
     public function test_required_blade_ui_components_exist(): void

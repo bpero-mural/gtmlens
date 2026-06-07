@@ -4,7 +4,7 @@ services:
       context: .
       dockerfile: docker/php/Dockerfile
     environment:
-      APP_NAME: "Mural Lens"
+      APP_NAME: "GTM Lens"
       APP_ENV: local
       APP_DEBUG: "true"
       APP_URL: http://localhost

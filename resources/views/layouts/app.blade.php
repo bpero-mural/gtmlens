@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <title>{{ isset($title) ? $title.' - ' : '' }}{{ config('app.name', 'Mural Lens') }}</title>
+        <title>{{ isset($title) ? $title.' - ' : '' }}{{ config('app.name', 'GTM Lens') }}</title>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         @livewireStyles
     </head>
@@ -14,7 +14,7 @@
                 <a href="{{ route('dashboard') }}" class="flex h-20 items-center gap-3 border-b border-slate-200 px-5">
                     <span class="flex h-10 w-10 items-center justify-center rounded-lg border border-blue-200 bg-blue-50 text-sm font-bold text-blue-700">ML</span>
                     <span>
-                        <span class="block text-base font-semibold">Mural Lens</span>
+                        <span class="block text-base font-semibold">GTM Lens</span>
                         <span class="mt-0.5 block text-xs text-slate-500">Salesforce metadata control</span>
                     </span>
                 </a>

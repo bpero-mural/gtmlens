@@ -1,7 +1,7 @@
 ---
 version: "alpha"
-name: "Mural Lens Design System"
-description: "Internal Salesforce metadata application for Mural."
+name: "GTM Lens Design System"
+description: "Internal Salesforce metadata application for GTM teams."
 colors:
   canvas: "#f5f7fb"
   surface: "#ffffff"
@@ -66,13 +66,13 @@ components:
     padding: "20px"
 ---
 
-# Mural Lens Design System
+# GTM Lens Design System
 
 ## Overview
 
-Mural Lens is an internal Salesforce metadata application. Its interface should feel like an operational cockpit for architects and developers, not a marketing site.
+GTM Lens is an internal Salesforce metadata application. Its interface should feel like an operational cockpit for architects and developers, not a marketing site.
 
-The design is owned by Mural Lens. It may use the open DESIGN.md format as a file structure, but it must not copy Google's visual identity, Google Stitch output, or third-party brand systems.
+The design is owned by GTM Lens. It may use the open DESIGN.md format as a file structure, but it must not copy Google's visual identity, Google Stitch output, or third-party brand systems.
 
 ## Colors
 
@@ -115,6 +115,6 @@ Use 6px radius for controls and 8px radius for panels. Avoid oversized pill styl
 - Do preserve the MVP rule: no Salesforce business record data.
 - Do use the local `DESIGN.md` as the product design source of truth.
 - Do not introduce Vue, Inertia, UI kits, graph libraries, or decorative design dependencies in the MVP.
-- Do not use Google, IBM, Airtable, ClickHouse, Salesforce, or Mural corporate marks or trade dress unless explicitly approved by the owner.
-- Do not use Google Stitch or any external SaaS with screenshots, metadata, code, credentials, or internal product details unless Mural explicitly approves that data transfer.
+- Do not use Google, IBM, Airtable, ClickHouse, Salesforce, or other corporate marks or trade dress unless explicitly approved by the owner.
+- Do not use Google Stitch or any external SaaS with screenshots, metadata, code, credentials, or internal product details unless that data transfer is explicitly approved.
 - Do not claim affiliation with Google or that this product is built with Google Stitch.

@@ -1,4 +1,4 @@
-# Mural Lens Agent Instructions
+# GTM Lens Agent Instructions
 
 This is the first file agents should read before changing this repository.
 
@@ -6,7 +6,7 @@ This is the first file agents should read before changing this repository.
 
 Stage 0 is complete and published. Stage 1A is the current implementation branch for a Salesforce CLI metadata probe.
 
-- Repository: `https://github.com/bpero-mural/murallens`
+- Repository: `https://github.com/bpero-mural/gtmlens`
 - Current branch: `stage-1a-cli-metadata-probe`
 - Current stage: Stage 1A Salesforce CLI metadata probe
 - OAuth is still intentionally out of scope.
@@ -37,7 +37,7 @@ Stage 0 auth is intentionally simple.
 
 Do not add social login, Microsoft Entra ID, SSO, OAuth UI, or identity-provider packages until the user explicitly starts that work.
 
-The local admin is repaired by `php artisan mural:ensure-local-admin` and by the local login flow if the user is missing or has a stale hash.
+The local admin is repaired by `php artisan gtm:ensure-local-admin` and by the local login flow if the user is missing or has a stale hash.
 
 ## Stage 1A Boundary
 
@@ -73,6 +73,24 @@ The project may use Google's open DESIGN.md format as a structure, but do not co
 
 Do not use Google Stitch or another external design SaaS with project data in the MVP.
 
+## Google DESIGN.md Legal And Vendor Boundary
+
+Google's public materials describe DESIGN.md as an open draft specification intended to work across tools and platforms. The public GitHub repository identifies the project as Apache-2.0 licensed.
+
+For GTM Lens:
+
+- Allowed: hand-authored local `DESIGN.md` files that describe GTM Lens-owned colors, typography, spacing, and UI rules.
+- Allowed with review: adding Google's `@google/design.md` CLI only if its license is documented, it is locked in `package-lock.json`, and it runs locally without sending data outside the machine.
+- Not allowed in the MVP: uploading screenshots, Salesforce metadata, source code, credentials, or internal product details to Google Stitch or any external design SaaS.
+- Not allowed: claiming GTM Lens is endorsed by, affiliated with, or built by Google.
+- Not allowed: using Google logos, Google product names as branding, Material/Google trade dress, or Stitch-generated output without explicit approval.
+
+This is an engineering compliance note, not legal advice. If external distribution, marketing use, or procurement of Google design tooling is planned, get legal/procurement review first.
+
+## Brand Boundary
+
+GTM Lens is an internal application name. Do not introduce corporate logos, proprietary brand assets, or external-facing claims unless the user provides approved assets and usage rules.
+
 ## UI Rules
 
 - Keep the frontend Laravel-native: Blade, Livewire, Tailwind CSS, and custom Blade components.
@@ -100,7 +118,7 @@ Before committing, verify that `.env`, `vendor`, `node_modules`, `public/build`,
 ## Docs To Keep In Sync
 
 - `README.md`
-- `CLAUDE.md`
+- `ROADMAP.md`
 - `DESIGN.md`
 - `docs/security.md`
 - `docs/license-policy.md`

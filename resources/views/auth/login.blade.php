@@ -4,7 +4,7 @@
             <div class="flex items-center gap-3">
                 <span class="flex h-10 w-10 items-center justify-center rounded-lg border border-blue-200 bg-blue-50 text-sm font-bold text-blue-700">ML</span>
                 <div>
-                    <p class="text-base font-semibold">Mural Lens</p>
+                    <p class="text-base font-semibold">GTM Lens</p>
                     <p class="text-xs text-slate-500">Local access</p>
                 </div>
             </div>

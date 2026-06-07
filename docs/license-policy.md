@@ -20,7 +20,7 @@ Dependencies should be permissive and operationally simple.
 - Elastic License
 - source-available
 - free-for-non-commercial
-- SaaS SDKs that send data outside Mural
+- SaaS SDKs that send data outside the approved company boundary
 
 ## Disallowed In The MVP
 

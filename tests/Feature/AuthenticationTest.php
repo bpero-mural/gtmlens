@@ -14,7 +14,7 @@ class AuthenticationTest extends TestCase
     {
         $this->get('/login')
             ->assertOk()
-            ->assertSee('Mural Lens')
+            ->assertSee('GTM Lens')
             ->assertSee('Sign in');
     }
 

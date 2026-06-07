@@ -1,6 +1,6 @@
 # Architecture
 
-Mural Lens is a Laravel modular monolith. Stage 0 establishes the application foundation without Salesforce OAuth or sync logic.
+GTM Lens is a Laravel modular monolith. Stage 0 establishes the application foundation without Salesforce OAuth or sync logic.
 
 ## Current Shape
 
