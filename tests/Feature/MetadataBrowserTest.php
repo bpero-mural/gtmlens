@@ -112,7 +112,7 @@ class MetadataBrowserTest extends TestCase
     }
 
     /**
-     * @param array<string, mixed> $attributes
+     * @param  array<string, mixed>  $attributes
      */
     private function entity(int $orgId, string $externalKey, string $type, string $apiName, string $label, ?string $parent = null, array $attributes = []): MetadataEntity
     {

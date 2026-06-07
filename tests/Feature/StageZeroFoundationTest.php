@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Schema;
 use Livewire\Component;
@@ -49,7 +50,7 @@ class StageZeroFoundationTest extends TestCase
     {
         $this->assertTrue(class_exists(Component::class));
 
-        $this->actingAs(\App\Models\User::factory()->create())
+        $this->actingAs(User::factory()->create())
             ->get('/')
             ->assertOk()
             ->assertSee('Livewire active');
@@ -57,7 +58,7 @@ class StageZeroFoundationTest extends TestCase
 
     public function test_authenticated_app_navigation_uses_livewire_navigation(): void
     {
-        $response = $this->actingAs(\App\Models\User::factory()->create())
+        $response = $this->actingAs(User::factory()->create())
             ->get('/')
             ->assertOk();
 
@@ -71,8 +72,32 @@ class StageZeroFoundationTest extends TestCase
         $readme = file_get_contents(base_path('README.md'));
 
         $this->assertStringContainsString('Livewire UX Boundary', $agents);
+        $this->assertStringContainsString('Authenticated page bodies must be implemented as Livewire components', $agents);
         $this->assertStringContainsString('wire:navigate', $agents);
         $this->assertStringContainsString('Livewire App UX', $readme);
+        $this->assertStringContainsString('Authenticated page bodies should be implemented as Livewire components', $readme);
+    }
+
+    public function test_authenticated_page_bodies_are_livewire_panels(): void
+    {
+        $pages = [
+            'dashboard.blade.php' => '<livewire:dashboard-panel',
+            'salesforce-orgs.blade.php' => '<livewire:salesforce-orgs-panel',
+            'search.blade.php' => '<livewire:metadata-search-panel',
+            'metadata/show.blade.php' => '<livewire:metadata-detail-panel',
+            'sync-runs/index.blade.php' => '<livewire:sync-runs-panel',
+            'dictionary/index.blade.php' => '<livewire:placeholder-panel',
+            'timeline/index.blade.php' => '<livewire:placeholder-panel',
+            'issues/index.blade.php' => '<livewire:placeholder-panel',
+            'admin/index.blade.php' => '<livewire:admin-panel',
+        ];
+
+        foreach ($pages as $path => $component) {
+            $content = file_get_contents(resource_path("views/pages/{$path}"));
+
+            $this->assertStringContainsString($component, $content, "Page [{$path}] must mount a Livewire panel.");
+            $this->assertSame(1, substr_count($content, '<livewire:'), "Page [{$path}] should stay a thin Livewire wrapper.");
+        }
     }
 
     public function test_node_and_environment_contracts_are_documented(): void
