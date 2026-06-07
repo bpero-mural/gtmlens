@@ -28,6 +28,7 @@ services:
       LOCAL_ADMIN_ENSURE_ON_BOOT: "true"
     volumes:
       - .:/var/www/html
+      - app_vendor:/var/www/html/vendor
       - salesforce_cli_sf:/root/.sf
       - ${USERPROFILE}/.sf:/host/.sf:ro
       - salesforce_cli_sfdx:/root/.sfdx
@@ -75,6 +76,7 @@ services:
       LOCAL_ADMIN_ENSURE_ON_BOOT: "false"
     volumes:
       - .:/var/www/html
+      - app_vendor:/var/www/html/vendor
       - salesforce_cli_sf:/root/.sf
       - ${USERPROFILE}/.sf:/host/.sf:ro
       - salesforce_cli_sfdx:/root/.sfdx
@@ -117,6 +119,7 @@ services:
       retries: 10
 
 volumes:
+  app_vendor:
   app_node_modules:
   postgres_data:
   snapshot_storage:
