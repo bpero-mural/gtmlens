@@ -11,7 +11,7 @@
     <body class="min-h-screen bg-[#f5f7fb] text-slate-950 antialiased">
         <div class="flex min-h-screen">
             <aside class="hidden w-72 border-r border-slate-200 bg-white lg:block">
-                <a href="{{ route('dashboard') }}" class="flex h-20 items-center gap-3 border-b border-slate-200 px-5">
+                <a wire:navigate href="{{ route('dashboard') }}" class="flex h-20 items-center gap-3 border-b border-slate-200 px-5">
                     <span class="flex h-10 w-10 items-center justify-center rounded-lg border border-blue-200 bg-blue-50 text-sm font-bold text-blue-700">ML</span>
                     <span>
                         <span class="block text-base font-semibold">GTM Lens</span>
@@ -45,6 +45,7 @@
                             <div class="mt-2 space-y-1">
                                 @foreach ($links as [$label, $route, $hint])
                                     <a
+                                        wire:navigate
                                         href="{{ route($route) }}"
                                         class="flex items-center justify-between rounded-md px-3 py-2.5 text-sm transition {{ request()->routeIs($route) ? 'bg-blue-50 text-blue-800 ring-1 ring-blue-100' : 'text-slate-700 hover:bg-slate-50 hover:text-slate-950' }}"
                                     >

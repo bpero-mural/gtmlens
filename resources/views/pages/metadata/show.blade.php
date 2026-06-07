@@ -1,6 +1,6 @@
 <x-layouts.app :title="$entity->api_name ?? $entity->external_key">
     <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
-        <a href="{{ route('search.index', request()->query()) }}" class="text-sm font-semibold text-blue-700 hover:text-blue-900">Back to metadata search</a>
+        <a wire:navigate href="{{ route('search.index', request()->query()) }}" class="text-sm font-semibold text-blue-700 hover:text-blue-900">Back to metadata search</a>
         <x-ui.badge>{{ $entity->metadata_type }}</x-ui.badge>
     </div>
 

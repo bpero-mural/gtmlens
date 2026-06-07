@@ -61,6 +61,13 @@ npm run build
 
 The app uses Node.js 22 LTS and enforces `"node": ">=22 <23"` in `package.json`.
 
+
+## Livewire App UX
+
+The authenticated application is Livewire-first. Internal app navigation uses `wire:navigate` so menu/sidebar movement does not behave like a traditional full page reload. Interactive app actions should be implemented as Livewire components when the user expects inline validation, loading states, polling, refresh, or progress feedback.
+
+Exceptions are authentication/session actions, file downloads, external links, and intentionally simple read-only query forms.
+
 ## Stage Boundary
 
 Stage 0 does not implement Salesforce OAuth, metadata sync, collectors, search behavior, or dependency parsing. Stage 1A adds a local Salesforce CLI metadata probe. Stage 1B adds raw Salesforce source retrieve. Stage 1C adds source normalization into local metadata tables. Stage 1D adds the first metadata browser UI. OAuth remains intentionally unimplemented.

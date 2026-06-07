@@ -55,6 +55,26 @@ class StageZeroFoundationTest extends TestCase
             ->assertSee('Livewire active');
     }
 
+    public function test_authenticated_app_navigation_uses_livewire_navigation(): void
+    {
+        $response = $this->actingAs(\App\Models\User::factory()->create())
+            ->get('/')
+            ->assertOk();
+
+        foreach (['Dashboard', 'Salesforce Orgs', 'Sync Runs', 'Search', 'Dictionary', 'Timeline', 'Issues', 'Admin'] as $label) {
+            $response->assertSee($label);
+        }
+
+        $this->assertGreaterThanOrEqual(9, substr_count($response->getContent(), 'wire:navigate'));
+
+        $agents = file_get_contents(base_path('AGENTS.md'));
+        $readme = file_get_contents(base_path('README.md'));
+
+        $this->assertStringContainsString('Livewire UX Boundary', $agents);
+        $this->assertStringContainsString('wire:navigate', $agents);
+        $this->assertStringContainsString('Livewire App UX', $readme);
+    }
+
     public function test_node_and_environment_contracts_are_documented(): void
     {
         $package = json_decode(file_get_contents(base_path('package.json')), true, flags: JSON_THROW_ON_ERROR);

@@ -25,7 +25,7 @@
 
             <div class="flex items-end gap-2">
                 <x-ui.button type="submit">Search</x-ui.button>
-                <a href="{{ route('search.index') }}" class="inline-flex h-10 items-center rounded-md border border-slate-300 bg-white px-4 text-sm font-semibold text-slate-700 hover:bg-slate-50">Reset</a>
+                <a wire:navigate href="{{ route('search.index') }}" class="inline-flex h-10 items-center rounded-md border border-slate-300 bg-white px-4 text-sm font-semibold text-slate-700 hover:bg-slate-50">Reset</a>
             </div>
         </form>
     </x-ui.card>
@@ -59,7 +59,7 @@
                         <tr>
                             <td class="px-4 py-3 text-sm"><x-ui.badge>{{ $entity->metadata_type }}</x-ui.badge></td>
                             <td class="px-4 py-3 text-sm font-medium text-slate-900">
-                                <a href="{{ route('metadata.show', $entity) }}" class="text-blue-700 hover:text-blue-900 hover:underline">{{ $entity->api_name ?? $entity->external_key }}</a>
+                                <a wire:navigate href="{{ route('metadata.show', $entity) }}" class="text-blue-700 hover:text-blue-900 hover:underline">{{ $entity->api_name ?? $entity->external_key }}</a>
                             </td>
                             <td class="px-4 py-3 text-sm text-slate-600">{{ $entity->label ?? '-' }}</td>
                             <td class="px-4 py-3 text-sm text-slate-500">{{ $entity->parent_external_key ?? '-' }}</td>

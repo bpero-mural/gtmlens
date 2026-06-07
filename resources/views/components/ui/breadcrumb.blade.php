@@ -8,7 +8,7 @@
                     <span>/</span>
                 @endif
                 @if (isset($item['href']))
-                    <a href="{{ $item['href'] }}" class="font-medium text-slate-700 hover:text-slate-950">{{ $item['label'] }}</a>
+                    <a wire:navigate href="{{ $item['href'] }}" class="font-medium text-slate-700 hover:text-slate-950">{{ $item['label'] }}</a>
                 @else
                     <span>{{ $item['label'] }}</span>
                 @endif

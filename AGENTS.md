@@ -94,6 +94,15 @@ This is an engineering compliance note, not legal advice. If external distributi
 
 GTM Lens is an internal application name. Do not introduce corporate logos, proprietary brand assets, or external-facing claims unless the user provides approved assets and usage rules.
 
+## Livewire UX Boundary
+
+The authenticated app must be Livewire-first for interactive UX.
+
+- Use `wire:navigate` for internal authenticated app links, including sidebar/menu links, metadata detail links, breadcrumbs, tabs, and reset/back links.
+- Use Livewire components/actions for interactive forms that change application state or should not full-refresh the page.
+- Classic Blade GET/POST is acceptable for authentication/session actions, file downloads, external links, and deliberately simple read-only query forms until a Livewire component replaces them.
+- Do not add Vue, React, Inertia, or another SPA layer for this MVP unless the user explicitly changes the frontend direction.
+
 ## UI Rules
 
 - Keep the frontend Laravel-native: Blade, Livewire, Tailwind CSS, and custom Blade components.
