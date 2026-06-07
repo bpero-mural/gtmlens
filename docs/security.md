@@ -1,10 +1,12 @@
 # Security
 
-Stage 0 is local-only and does not connect to Salesforce.
+Stage 0 is local-only. Stage 1A can read allowlisted metadata through Salesforce CLI, but it does not implement OAuth or store Salesforce tokens.
 
 ## Non-Negotiable MVP Boundary
 
 The MVP must not read Salesforce business record data. It may only retrieve approved metadata in later stages. Forbidden examples include Account, Contact, Opportunity, or any object rows containing business values.
+
+Stage 1A must block `Account`, `Contact`, `Opportunity`, `SELECT *`, and any object not explicitly allowlisted for metadata probing.
 
 ## Sensitive Data Rules
 

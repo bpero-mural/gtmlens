@@ -35,4 +35,8 @@ return [
         ],
     ],
 
+    'salesforce' => [
+        'api_version' => env('SALESFORCE_API_VERSION', '61.0'),
+    ],
+
 ];

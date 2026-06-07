@@ -63,7 +63,27 @@ The app uses Node.js 22 LTS and enforces `"node": ">=22 <23"` in `package.json`.
 
 ## Stage Boundary
 
-Stage 0 does not implement Salesforce OAuth, metadata sync, collectors, search behavior, or dependency parsing. Those begin in later stages after the Docker foundation is healthy.
+Stage 0 does not implement Salesforce OAuth, metadata sync, collectors, search behavior, or dependency parsing. Stage 1A adds a local Salesforce CLI metadata probe only; OAuth remains intentionally unimplemented.
+
+## Stage 1A CLI Metadata Probe
+
+Authenticate a Salesforce org outside Mural Lens with Salesforce CLI:
+
+```bash
+sf org login web --alias stage
+```
+
+Run the local metadata probe:
+
+```bash
+docker compose exec app php artisan salesforce:metadata-probe stage
+```
+
+The probe creates a `sync_run`, stores local JSON snapshots under `storage/app/snapshots`, and shows the org/run in `/salesforce-orgs` and `/sync-runs`.
+
+Allowed metadata objects include `EntityDefinition`, `FieldDefinition`, `ApexClass`, `ApexTrigger`, `ValidationRule`, `Flow`, `FlowDefinition`, `FlowVersionView`, `CustomObject`, `CustomField`, and `PicklistValueInfo`.
+
+Business-record queries remain forbidden. Do not query objects such as `Account`, `Contact`, or `Opportunity`.
 
 ## Important Files
 

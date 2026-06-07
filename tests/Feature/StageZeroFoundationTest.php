@@ -37,6 +37,7 @@ class StageZeroFoundationTest extends TestCase
     public function test_core_stage_zero_columns_are_present(): void
     {
         $this->assertTrue(Schema::hasColumns('users', ['name', 'email', 'password', 'role']));
+        $this->assertTrue(Schema::hasColumns('salesforce_orgs', ['name', 'alias', 'api_version', 'status']));
         $this->assertTrue(Schema::hasColumns('metadata_entities', ['external_key', 'metadata_type', 'api_name', 'content_hash', 'attributes']));
         $this->assertTrue(Schema::hasColumns('search_documents', ['metadata_entity_id', 'title', 'api_name', 'content', 'filters']));
         $this->assertTrue(Schema::hasColumns('dictionary_entries', ['business_definition', 'owner_name', 'data_classification', 'criticality']));
@@ -81,8 +82,8 @@ class StageZeroFoundationTest extends TestCase
         $this->assertStringContainsString('must not read Salesforce business record data', $security);
         $this->assertStringContainsString('AGPL', $licenses);
         $this->assertStringContainsString('OpenSearch', $licenses);
-        $this->assertStringContainsString('No Salesforce OAuth controller', $sync);
-        $this->assertStringContainsString('No business record queries', $sync);
+        $this->assertStringContainsString('OAuth and token storage are intentionally not implemented yet', $sync);
+        $this->assertStringContainsString('The MVP must not query or store Salesforce business record data', $sync);
         $this->assertStringContainsString('Mural Lens Design System', $design);
         $this->assertStringContainsString('no Salesforce business record data', $design);
         $this->assertStringContainsString('Google DESIGN.md Legal And Vendor Boundary', $claude);
@@ -91,7 +92,7 @@ class StageZeroFoundationTest extends TestCase
         $this->assertStringContainsString('local email/password login only', $claude);
         $this->assertStringContainsString('first file agents should read', $agents);
         $this->assertStringContainsString('admin@example.test', $agents);
-        $this->assertStringContainsString('Do not start Stage 1', $agents);
+        $this->assertStringContainsString('Stage 1A Salesforce CLI metadata probe', $agents);
     }
 
     public function test_required_blade_ui_components_exist(): void

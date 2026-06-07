@@ -4,12 +4,12 @@ This is the first file agents should read before changing this repository.
 
 ## Project Status
 
-Stage 0 is complete and published.
+Stage 0 is complete and published. Stage 1A is the current implementation branch for a Salesforce CLI metadata probe.
 
 - Repository: `https://github.com/bpero-mural/murallens`
-- Current stage: Stage 0 local Docker foundation
-- Next gated stage: Stage 1 Salesforce connection and sync foundation
-- Do not start Stage 1 unless the user explicitly asks for it.
+- Current branch: `stage-1a-cli-metadata-probe`
+- Current stage: Stage 1A Salesforce CLI metadata probe
+- OAuth is still intentionally out of scope.
 
 ## Stage 0 Baseline
 
@@ -39,15 +39,18 @@ Do not add social login, Microsoft Entra ID, SSO, OAuth UI, or identity-provider
 
 The local admin is repaired by `php artisan mural:ensure-local-admin` and by the local login flow if the user is missing or has a stale hash.
 
-## Hard Stage Boundary
+## Stage 1A Boundary
+
+Stage 1A may use Salesforce CLI to read allowlisted metadata from an already-authenticated org alias:
+
+```bash
+php artisan salesforce:metadata-probe {orgAlias}
+```
 
 Do not implement these unless the user explicitly asks for the next stage:
 
 - Salesforce OAuth
-- Salesforce API clients
 - Salesforce token storage
-- Metadata collectors
-- Sync commands
 - Search implementation
 - Dependency parsers
 - Data dictionary editing
@@ -59,6 +62,8 @@ Do not implement these unless the user explicitly asks for the next stage:
 The MVP must not query or store Salesforce business record data.
 
 Never send Salesforce metadata, credentials, source code, screenshots, internal docs, or product details to external SaaS unless the user explicitly approves that transfer and the security docs are updated.
+
+Stage 1A metadata queries must pass the allowlist guard. `Account`, `Contact`, `Opportunity`, `SELECT *`, and unknown objects are forbidden.
 
 ## Design Boundary
 
@@ -87,6 +92,8 @@ docker compose exec app php artisan db:seed
 docker compose exec app php artisan test
 docker compose exec app npm run build
 ```
+
+Run `docker compose exec app php artisan salesforce:metadata-probe stage` only when an authenticated Salesforce CLI alias named `stage` is intentionally available.
 
 Before committing, verify that `.env`, `vendor`, `node_modules`, `public/build`, and caches are not staged.
 

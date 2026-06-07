@@ -4,9 +4,17 @@ Claude should read this file, but `AGENTS.md` is the cross-agent entrypoint and 
 
 ## Current Stage
 
-Stage 0 is complete and published at `https://github.com/bpero-mural/murallens`.
+Stage 0 is complete and published at `https://github.com/bpero-mural/murallens`. Stage 1A is the current implementation branch for a Salesforce CLI metadata probe.
 
-Do not start Salesforce OAuth, metadata collectors, sync logic, search implementation, or parser work unless the user explicitly requests the next stage.
+Do not start Salesforce OAuth, token storage, search implementation, dependency parser work, or data dictionary editing unless the user explicitly requests the next stage.
+
+Stage 1A may use:
+
+```bash
+php artisan salesforce:metadata-probe {orgAlias}
+```
+
+The org alias must already be authenticated through Salesforce CLI outside Mural Lens.
 
 ## Authentication Boundary
 
@@ -59,3 +67,5 @@ Design references from catalogs such as getdesign.md are inspiration only. They 
 ## Security Boundary
 
 The MVP must not query or store Salesforce business record data. Do not send Salesforce metadata, credentials, code, screenshots, or internal docs to external SaaS unless the user explicitly approves that data transfer and the security docs are updated.
+
+Stage 1A metadata queries must pass the allowlist guard. `Account`, `Contact`, `Opportunity`, `SELECT *`, and unknown objects are forbidden.
