@@ -76,6 +76,7 @@ class StageZeroFoundationTest extends TestCase
         $sync = file_get_contents(base_path('docs/salesforce-sync.md'));
         $design = file_get_contents(base_path('DESIGN.md'));
         $claude = file_get_contents(base_path('CLAUDE.md'));
+        $agents = file_get_contents(base_path('AGENTS.md'));
 
         $this->assertStringContainsString('must not read Salesforce business record data', $security);
         $this->assertStringContainsString('AGPL', $licenses);
@@ -88,6 +89,9 @@ class StageZeroFoundationTest extends TestCase
         $this->assertStringContainsString('not legal advice', $claude);
         $this->assertStringContainsString('Not allowed in the MVP: uploading screenshots', $claude);
         $this->assertStringContainsString('local email/password login only', $claude);
+        $this->assertStringContainsString('first file agents should read', $agents);
+        $this->assertStringContainsString('admin@example.test', $agents);
+        $this->assertStringContainsString('Do not start Stage 1', $agents);
     }
 
     public function test_required_blade_ui_components_exist(): void

@@ -1,0 +1,100 @@
+# Mural Lens Agent Instructions
+
+This is the first file agents should read before changing this repository.
+
+## Project Status
+
+Stage 0 is complete and published.
+
+- Repository: `https://github.com/bpero-mural/murallens`
+- Current stage: Stage 0 local Docker foundation
+- Next gated stage: Stage 1 Salesforce connection and sync foundation
+- Do not start Stage 1 unless the user explicitly asks for it.
+
+## Stage 0 Baseline
+
+The app is a Docker-first Laravel modular monolith foundation:
+
+- Laravel 13
+- PHP 8.4
+- PostgreSQL 17
+- Blade
+- Livewire 4
+- Tailwind CSS
+- Local email/password auth
+- Database queues
+- Laravel scheduler
+- Stage 0 core schema
+- Tests for the Stage 0 contract
+
+## Local Login
+
+Stage 0 auth is intentionally simple.
+
+- URL: `http://localhost/login`
+- Email: `admin@example.test`
+- Password: `password`
+
+Do not add social login, Microsoft Entra ID, SSO, OAuth UI, or identity-provider packages until the user explicitly starts that work.
+
+The local admin is repaired by `php artisan mural:ensure-local-admin` and by the local login flow if the user is missing or has a stale hash.
+
+## Hard Stage Boundary
+
+Do not implement these unless the user explicitly asks for the next stage:
+
+- Salesforce OAuth
+- Salesforce API clients
+- Salesforce token storage
+- Metadata collectors
+- Sync commands
+- Search implementation
+- Dependency parsers
+- Data dictionary editing
+- Timeline diffing
+- Potential issue detectors
+
+## Security Boundary
+
+The MVP must not query or store Salesforce business record data.
+
+Never send Salesforce metadata, credentials, source code, screenshots, internal docs, or product details to external SaaS unless the user explicitly approves that transfer and the security docs are updated.
+
+## Design Boundary
+
+Use `DESIGN.md` as the local design-system contract for UI work.
+
+The project may use Google's open DESIGN.md format as a structure, but do not copy Google visual identity, Google Stitch output, Google branding, or third-party brand systems.
+
+Do not use Google Stitch or another external design SaaS with project data in the MVP.
+
+## UI Rules
+
+- Keep the frontend Laravel-native: Blade, Livewire, Tailwind CSS, and custom Blade components.
+- Keep the app operational, compact, table-first, and metadata-oriented.
+- Do not add Vue, Inertia, Nuxt UI, PrimeVue, Filament, Flux, Mary UI, DaisyUI, AG Grid, Cytoscape.js, graph visualization libraries, paid UI kits, or marketplace blocks.
+- Do not use oversized hero pages inside the authenticated app.
+- Do not use decorative gradient backgrounds, orbs, bokeh, or brand-copycat styling.
+
+## Verification
+
+Use Docker-first commands:
+
+```bash
+docker compose up --build -d
+docker compose exec app php artisan migrate
+docker compose exec app php artisan db:seed
+docker compose exec app php artisan test
+docker compose exec app npm run build
+```
+
+Before committing, verify that `.env`, `vendor`, `node_modules`, `public/build`, and caches are not staged.
+
+## Docs To Keep In Sync
+
+- `README.md`
+- `CLAUDE.md`
+- `DESIGN.md`
+- `docs/security.md`
+- `docs/license-policy.md`
+- `docs/docker.md`

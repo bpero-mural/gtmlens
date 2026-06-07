@@ -1,12 +1,24 @@
 # Mural Lens Agent Instructions
 
+Claude should read this file, but `AGENTS.md` is the cross-agent entrypoint and should be kept in sync with this file.
+
 ## Current Stage
 
-Stage 0 is complete. Do not start Salesforce OAuth, metadata collectors, sync logic, search implementation, or parser work unless the user explicitly requests the next stage.
+Stage 0 is complete and published at `https://github.com/bpero-mural/murallens`.
+
+Do not start Salesforce OAuth, metadata collectors, sync logic, search implementation, or parser work unless the user explicitly requests the next stage.
 
 ## Authentication Boundary
 
 Keep authentication simple in Stage 0: local email/password login only. Do not add social login, Microsoft Entra ID, SSO, OAuth UI, or identity-provider packages until the user explicitly starts that work.
+
+Local login:
+
+- URL: `http://localhost/login`
+- Email: `admin@example.test`
+- Password: `password`
+
+The local admin is repaired by `php artisan mural:ensure-local-admin` and by the local login flow if the user is missing or has a stale hash.
 
 ## Design Source Of Truth
 
