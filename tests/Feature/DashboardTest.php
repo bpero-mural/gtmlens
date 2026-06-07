@@ -78,7 +78,7 @@ class DashboardTest extends TestCase
             ->get('/sync-runs')
             ->assertOk()
             ->assertSee('stage')
-            ->assertSee('cli_probe')
+            ->assertSee('Probing metadata')
             ->assertSee('completed');
     }
 }

@@ -14,7 +14,7 @@ This roadmap is directional. Keep implementation gated by explicit stage approva
 
 ## In Progress
 
-- Stage 1D metadata browser, searchable metadata list, and UI-triggered source sync.
+- Stage 1D metadata browser, searchable metadata list, and Livewire UI-triggered source sync.
 
 ## Planned MVP Capabilities
 

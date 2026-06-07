@@ -8,7 +8,7 @@ Stage 0, Stage 1A, Stage 1B, and Stage 1C are complete. Stage 1D is the current 
 
 - Repository: `https://github.com/bpero-mural/gtmlens`
 - Current branch: `stage-1d-metadata-browser`
-- Current stage: Stage 1D metadata browser and UI-triggered source sync
+- Current stage: Stage 1D metadata browser and Livewire UI-triggered source sync
 - Previous stage: Stage 1C source normalization
 - Previous stage: Stage 1B Salesforce CLI source retrieve
 - Previous stage: Stage 1A Salesforce CLI metadata probe

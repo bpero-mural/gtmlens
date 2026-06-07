@@ -71,7 +71,7 @@ Supported Stage 1C source types are Apex classes, Apex triggers, custom objects,
 
 ## Run Source Sync From The UI
 
-Stage 1D.1 adds a local UI trigger for the CLI source path.
+Stage 1D.1 adds a local Livewire UI trigger for the CLI source path.
 
 Open:
 

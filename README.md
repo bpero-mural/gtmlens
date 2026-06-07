@@ -146,7 +146,7 @@ Detail pages show the entity key, label, parent key, status, latest version payl
 
 ## Stage 1D.1 UI-Triggered Source Sync
 
-Stage 1D.1 lets an authenticated user queue the source retrieve and normalization flow from the app.
+Stage 1D.1 lets an authenticated user queue the source retrieve and normalization flow from a Livewire panel without a full page refresh.
 
 Open:
 
