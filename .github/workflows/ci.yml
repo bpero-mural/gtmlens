@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - stage-1a-cli-metadata-probe
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  docker:
+    name: Docker Tests And Build
+    runs-on: ubuntu-latest
+    env:
+      COMPOSE_PROJECT_NAME: gtmlens_ci
+      USERPROFILE: ${{ github.workspace }}/.ci-home
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Prepare Salesforce CLI config mounts
+        run: |
+          mkdir -p "$USERPROFILE/.sf" "$USERPROFILE/.sfdx"
+
+      - name: Build app image
+        run: docker compose build app
+
+      - name: Start app services
+        run: docker compose up -d postgres app
+
+      - name: Run migrations
+        run: docker compose exec -T app php artisan migrate --force
+
+      - name: Run Laravel tests
+        run: docker compose exec -T app php artisan test
+
+      - name: Build frontend assets
+        run: docker compose exec -T app npm run build
+
+      - name: Stop services
+        if: always()
+        run: docker compose down -v
