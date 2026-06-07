@@ -7,21 +7,21 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-#[Fillable(['salesforce_org_id', 'sync_run_id', 'snapshot_type', 'path', 'content_hash', 'metadata'])]
-class MetadataSnapshot extends Model
+#[Fillable(['metadata_entity_id', 'sync_run_id', 'version_number', 'content_hash', 'payload_path', 'normalized_payload'])]
+class MetadataEntityVersion extends Model
 {
     use HasFactory;
 
     protected function casts(): array
     {
         return [
-            'metadata' => 'array',
+            'normalized_payload' => 'array',
         ];
     }
 
-    public function salesforceOrg(): BelongsTo
+    public function metadataEntity(): BelongsTo
     {
-        return $this->belongsTo(SalesforceOrg::class);
+        return $this->belongsTo(MetadataEntity::class);
     }
 
     public function syncRun(): BelongsTo

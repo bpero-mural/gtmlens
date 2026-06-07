@@ -12,15 +12,15 @@ This roadmap is directional. Keep implementation gated by explicit stage approva
 
 ## In Progress
 
-- Stage 1B SFDX-style raw metadata source retrieve through Salesforce CLI.
+- Stage 1C source normalization into PostgreSQL metadata tables.
 - Strict metadata query allowlist.
 - Local JSON snapshots for probe output.
 - Read-only Salesforce org and sync run tables.
 
 ## Planned MVP Capabilities
 
-- Stage 1B SFDX-style raw metadata source retrieve through Salesforce CLI.
-- Stage 1C metadata normalization into PostgreSQL from raw snapshots/source files.
+- Stage 1C source normalization into PostgreSQL metadata tables.
+- Stage 1D metadata dictionary and searchable metadata list.
 - Metadata collectors for objects, fields, validation rules, Apex, and flows.
 - Metadata search using PostgreSQL full-text search and `pg_trgm`.
 - Metadata detail cards.

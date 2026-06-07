@@ -63,7 +63,7 @@ The app uses Node.js 22 LTS and enforces `"node": ">=22 <23"` in `package.json`.
 
 ## Stage Boundary
 
-Stage 0 does not implement Salesforce OAuth, metadata sync, collectors, search behavior, or dependency parsing. Stage 1A adds a local Salesforce CLI metadata probe. Stage 1B adds raw Salesforce source retrieve. OAuth remains intentionally unimplemented.
+Stage 0 does not implement Salesforce OAuth, metadata sync, collectors, search behavior, or dependency parsing. Stage 1A adds a local Salesforce CLI metadata probe. Stage 1B adds raw Salesforce source retrieve. Stage 1C adds source normalization into local metadata tables. OAuth remains intentionally unimplemented.
 
 ## Stage 1A CLI Metadata Probe
 
@@ -110,6 +110,24 @@ storage/app/snapshots/{orgAlias}/{syncRunId}/source/
 
 This stage is the raw source foundation for later normalization. Do not commit retrieved org source snapshots to Git.
 
+
+## Stage 1C Source Normalization
+
+Stage 1C reads a `source_retrieve` snapshot and populates local metadata tables for the first supported metadata types: Apex classes, Apex triggers, custom objects, custom fields, flows, and validation rules.
+
+Normalize a specific source retrieve run:
+
+```bash
+docker compose exec app php artisan salesforce:source-normalize {sourceSyncRunId}
+```
+
+Normalize the latest source retrieve run for an alias:
+
+```bash
+docker compose exec app php artisan salesforce:source-normalize --latest --orgAlias=stage
+```
+
+The command creates a new `sync_run` with `triggered_by = source_normalization` and writes to `metadata_entities`, `metadata_entity_versions`, and `search_documents`.
 ## Metadata Storage Direction
 
 GTM Lens will use a hybrid storage model:
@@ -117,7 +135,7 @@ GTM Lens will use a hybrid storage model:
 - Raw Salesforce source snapshots, similar to an SFDX project, preserve canonical metadata files for diffing and future parsing.
 - Normalized PostgreSQL tables store the fields needed for search, documentation, impact analysis, and UI workflows.
 
-Stage 1A stores raw CLI JSON snapshots only. Stage 1B stores raw SFDX-style source snapshots. Normalization is planned for later stages.
+Stage 1A stores raw CLI JSON snapshots only. Stage 1B stores raw SFDX-style source snapshots. Stage 1C stores the first normalized metadata index in PostgreSQL.
 
 ## Important Files
 

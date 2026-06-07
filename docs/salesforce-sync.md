@@ -51,6 +51,23 @@ storage/app/snapshots/{orgAlias}/{syncRunId}/source/
 
 This command records a `sync_run` with `triggered_by = cli_source_retrieve` and one `metadata_snapshots` row with `snapshot_type = source_retrieve`.
 
+
+## Normalize Source
+
+Stage 1C normalizes retrieved source into local tables:
+
+```bash
+docker compose exec app php artisan salesforce:source-normalize --latest --orgAlias=stage
+```
+
+The command creates a new `sync_run` with `triggered_by = source_normalization` and populates:
+
+- `metadata_entities`
+- `metadata_entity_versions`
+- `search_documents`
+
+Supported Stage 1C source types are Apex classes, Apex triggers, custom objects, custom fields, flows, and validation rules. Dependency edges and dictionary editing remain future work.
+
 ## Storage Direction
 
 GTM Lens uses a hybrid metadata storage direction:
@@ -58,7 +75,7 @@ GTM Lens uses a hybrid metadata storage direction:
 - Raw snapshots preserve source-of-truth Salesforce responses and, in later stages, SFDX-style metadata source files.
 - Normalized PostgreSQL tables store searchable and reportable metadata extracted from snapshots.
 
-Stage 1A stores raw CLI JSON snapshots only. Stage 1B stores raw SFDX-style source snapshots. Later stages should add parsers that populate normalized tables for objects, fields, Apex, flows, validation rules, dependencies, and dictionary workflows.
+Stage 1A stores raw CLI JSON snapshots only. Stage 1B stores raw SFDX-style source snapshots. Stage 1C populates the first normalized tables for objects, fields, Apex, flows, and validation rules. Later stages should add dependency parsing and dictionary workflows.
 
 ## Allowed Metadata Objects
 
@@ -90,6 +107,6 @@ The MVP must not query or store Salesforce business record data.
 - encrypted token storage
 - connected app setup
 - refresh token handling
-- metadata normalization beyond local snapshots
+- dependency-aware normalization beyond the Stage 1C source index
 - search indexing
 - dependency parsing
