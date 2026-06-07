@@ -9,18 +9,16 @@ This roadmap is directional. Keep implementation gated by explicit stage approva
 - PostgreSQL 17 schema foundation.
 - Livewire, Blade, Tailwind UI shell.
 - Stage 1A Salesforce CLI metadata probe branch.
+- Stage 1B raw Salesforce source retrieve branch.
+- Stage 1C source normalization branch.
 
 ## In Progress
 
-- Stage 1C source normalization into PostgreSQL metadata tables.
-- Strict metadata query allowlist.
-- Local JSON snapshots for probe output.
-- Read-only Salesforce org and sync run tables.
+- Stage 1D metadata browser and searchable metadata list.
 
 ## Planned MVP Capabilities
 
-- Stage 1C source normalization into PostgreSQL metadata tables.
-- Stage 1D metadata dictionary and searchable metadata list.
+- Stage 1E metadata dictionary starter workflow.
 - Metadata collectors for objects, fields, validation rules, Apex, and flows.
 - Metadata search using PostgreSQL full-text search and `pg_trgm`.
 - Metadata detail cards.

@@ -4,11 +4,12 @@ This is the first file agents should read before changing this repository.
 
 ## Project Status
 
-Stage 0, Stage 1A, and Stage 1B are complete. Stage 1C is the current implementation branch for source normalization.
+Stage 0, Stage 1A, Stage 1B, and Stage 1C are complete. Stage 1D is the current implementation branch for the metadata browser.
 
 - Repository: `https://github.com/bpero-mural/gtmlens`
-- Current branch: `stage-1c-source-normalization`
-- Current stage: Stage 1C source normalization
+- Current branch: `stage-1d-metadata-browser`
+- Current stage: Stage 1D metadata browser
+- Previous stage: Stage 1C source normalization
 - Previous stage: Stage 1B Salesforce CLI source retrieve
 - Previous stage: Stage 1A Salesforce CLI metadata probe
 - OAuth is still intentionally out of scope.

@@ -68,6 +68,16 @@ The command creates a new `sync_run` with `triggered_by = source_normalization` 
 
 Supported Stage 1C source types are Apex classes, Apex triggers, custom objects, custom fields, flows, and validation rules. Dependency edges and dictionary editing remain future work.
 
+## Browse Normalized Metadata
+
+Stage 1D exposes normalized metadata in the app:
+
+```text
+http://localhost:8080/search
+```
+
+The browser reads from `metadata_entities` and `search_documents`. It supports search, type/status filters, pagination, and a detail page per entity.
+
 ## Storage Direction
 
 GTM Lens uses a hybrid metadata storage direction:

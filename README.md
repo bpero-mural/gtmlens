@@ -63,7 +63,7 @@ The app uses Node.js 22 LTS and enforces `"node": ">=22 <23"` in `package.json`.
 
 ## Stage Boundary
 
-Stage 0 does not implement Salesforce OAuth, metadata sync, collectors, search behavior, or dependency parsing. Stage 1A adds a local Salesforce CLI metadata probe. Stage 1B adds raw Salesforce source retrieve. Stage 1C adds source normalization into local metadata tables. OAuth remains intentionally unimplemented.
+Stage 0 does not implement Salesforce OAuth, metadata sync, collectors, search behavior, or dependency parsing. Stage 1A adds a local Salesforce CLI metadata probe. Stage 1B adds raw Salesforce source retrieve. Stage 1C adds source normalization into local metadata tables. Stage 1D adds the first metadata browser UI. OAuth remains intentionally unimplemented.
 
 ## Stage 1A CLI Metadata Probe
 
@@ -128,6 +128,21 @@ docker compose exec app php artisan salesforce:source-normalize --latest --orgAl
 ```
 
 The command creates a new `sync_run` with `triggered_by = source_normalization` and writes to `metadata_entities`, `metadata_entity_versions`, and `search_documents`.
+
+## Stage 1D Metadata Browser
+
+Stage 1D makes normalized metadata visible in the authenticated app.
+
+Open:
+
+```text
+http://localhost:8080/search
+```
+
+The metadata browser supports case-insensitive search, type filters, status filters, pagination, and a detail page for each normalized entity.
+
+Detail pages show the entity key, label, parent key, status, latest version payload path, normalized attributes, and generated search document content.
+
 ## Metadata Storage Direction
 
 GTM Lens will use a hybrid storage model:
