@@ -12,7 +12,7 @@ This roadmap is directional. Keep implementation gated by explicit stage approva
 
 ## In Progress
 
-- Salesforce CLI metadata probe validation against the real `stage` org.
+- Stage 1B SFDX-style raw metadata source retrieve through Salesforce CLI.
 - Strict metadata query allowlist.
 - Local JSON snapshots for probe output.
 - Read-only Salesforce org and sync run tables.

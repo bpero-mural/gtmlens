@@ -63,7 +63,7 @@ The app uses Node.js 22 LTS and enforces `"node": ">=22 <23"` in `package.json`.
 
 ## Stage Boundary
 
-Stage 0 does not implement Salesforce OAuth, metadata sync, collectors, search behavior, or dependency parsing. Stage 1A adds a local Salesforce CLI metadata probe only; OAuth remains intentionally unimplemented.
+Stage 0 does not implement Salesforce OAuth, metadata sync, collectors, search behavior, or dependency parsing. Stage 1A adds a local Salesforce CLI metadata probe. Stage 1B adds raw Salesforce source retrieve. OAuth remains intentionally unimplemented.
 
 ## Stage 1A CLI Metadata Probe
 
@@ -93,6 +93,23 @@ Allowed metadata objects include `EntityDefinition`, `FieldDefinition`, `ApexCla
 
 Business-record queries remain forbidden. Do not query objects such as `Account`, `Contact`, or `Opportunity`.
 
+
+## Stage 1B Source Retrieve
+
+Stage 1B retrieves raw Salesforce metadata source into a run-specific snapshot directory. It still uses Salesforce CLI and still does not implement OAuth or token storage.
+
+```bash
+docker compose exec app php artisan salesforce:source-retrieve stage
+```
+
+The default manifest is `manifest/gtm-lens-source.xml`, and retrieved source is stored under:
+
+```text
+storage/app/snapshots/{orgAlias}/{syncRunId}/source/
+```
+
+This stage is the raw source foundation for later normalization. Do not commit retrieved org source snapshots to Git.
+
 ## Metadata Storage Direction
 
 GTM Lens will use a hybrid storage model:
@@ -100,7 +117,7 @@ GTM Lens will use a hybrid storage model:
 - Raw Salesforce source snapshots, similar to an SFDX project, preserve canonical metadata files for diffing and future parsing.
 - Normalized PostgreSQL tables store the fields needed for search, documentation, impact analysis, and UI workflows.
 
-Stage 1A stores raw CLI JSON snapshots only. Source retrieve and normalization are planned for later stages.
+Stage 1A stores raw CLI JSON snapshots only. Stage 1B stores raw SFDX-style source snapshots. Normalization is planned for later stages.
 
 ## Important Files
 

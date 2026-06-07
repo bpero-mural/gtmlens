@@ -34,6 +34,23 @@ Snapshots are stored under:
 storage/app/snapshots/{orgAlias}/{syncRunId}/
 ```
 
+
+## Run Source Retrieve
+
+Stage 1B retrieves raw SFDX-style metadata source through Salesforce CLI:
+
+```bash
+docker compose exec app php artisan salesforce:source-retrieve stage
+```
+
+The default manifest is `manifest/gtm-lens-source.xml`. Retrieved source is stored under:
+
+```text
+storage/app/snapshots/{orgAlias}/{syncRunId}/source/
+```
+
+This command records a `sync_run` with `triggered_by = cli_source_retrieve` and one `metadata_snapshots` row with `snapshot_type = source_retrieve`.
+
 ## Storage Direction
 
 GTM Lens uses a hybrid metadata storage direction:
@@ -41,7 +58,7 @@ GTM Lens uses a hybrid metadata storage direction:
 - Raw snapshots preserve source-of-truth Salesforce responses and, in later stages, SFDX-style metadata source files.
 - Normalized PostgreSQL tables store searchable and reportable metadata extracted from snapshots.
 
-Stage 1A stores raw CLI JSON snapshots only. Later stages should add Salesforce CLI source retrieve, then parsers that populate normalized tables for objects, fields, Apex, flows, validation rules, dependencies, and dictionary workflows.
+Stage 1A stores raw CLI JSON snapshots only. Stage 1B stores raw SFDX-style source snapshots. Later stages should add parsers that populate normalized tables for objects, fields, Apex, flows, validation rules, dependencies, and dictionary workflows.
 
 ## Allowed Metadata Objects
 

@@ -4,11 +4,12 @@ This is the first file agents should read before changing this repository.
 
 ## Project Status
 
-Stage 0 is complete and published. Stage 1A is the current implementation branch for a Salesforce CLI metadata probe.
+Stage 0 and Stage 1A are complete. Stage 1B is the current implementation branch for Salesforce CLI source retrieve.
 
 - Repository: `https://github.com/bpero-mural/gtmlens`
-- Current branch: `stage-1a-cli-metadata-probe`
-- Current stage: Stage 1A Salesforce CLI metadata probe
+- Current branch: `stage-1b-source-retrieve`
+- Current stage: Stage 1B Salesforce CLI source retrieve
+- Previous stage: Stage 1A Salesforce CLI metadata probe
 - OAuth is still intentionally out of scope.
 
 ## Stage 0 Baseline
@@ -111,7 +112,7 @@ docker compose exec app php artisan test
 docker compose exec app npm run build
 ```
 
-Run `docker compose exec app php artisan salesforce:metadata-probe stage` only when an authenticated Salesforce CLI alias named `stage` is intentionally available.
+Run `docker compose exec app php artisan salesforce:metadata-probe stage` or `docker compose exec app php artisan salesforce:source-retrieve stage` only when an authenticated Salesforce CLI alias named `stage` is intentionally available.
 
 Before committing, verify that `.env`, `vendor`, `node_modules`, `public/build`, and caches are not staged.
 

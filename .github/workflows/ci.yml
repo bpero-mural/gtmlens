@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - stage-1a-cli-metadata-probe
+      - "stage-*"
   pull_request:
 
 permissions:
