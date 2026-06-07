@@ -89,6 +89,14 @@
 
                 <main class="flex-1">
                     <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+                        @if (session('status'))
+                            <div class="mb-5 rounded-md border border-teal-200 bg-teal-50 px-4 py-3 text-sm font-medium text-teal-900">{{ session('status') }}</div>
+                        @endif
+
+                        @if ($errors->any())
+                            <div class="mb-5 rounded-md border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-900">{{ $errors->first() }}</div>
+                        @endif
+
                         {{ $slot }}
                     </div>
                 </main>

@@ -68,6 +68,26 @@ The command creates a new `sync_run` with `triggered_by = source_normalization` 
 
 Supported Stage 1C source types are Apex classes, Apex triggers, custom objects, custom fields, flows, and validation rules. Dependency edges and dictionary editing remain future work.
 
+
+## Run Source Sync From The UI
+
+Stage 1D.1 adds a local UI trigger for the CLI source path.
+
+Open:
+
+```text
+http://localhost:8080/sync-runs
+```
+
+Submit a Salesforce CLI org alias such as `stage`. The app queues `RunSalesforceSourceSync` on the `salesforce-sync` queue. The Docker `queue` service executes the job and calls the existing CLI commands in order:
+
+```bash
+php artisan salesforce:source-retrieve stage
+php artisan salesforce:source-normalize --latest --orgAlias=stage
+```
+
+The commands continue to create the `sync_runs`, `metadata_snapshots`, raw source files, normalized metadata entities, versions, and search documents. The UI trigger does not add OAuth, connected apps, token refresh, or Salesforce token storage.
+
 ## Browse Normalized Metadata
 
 Stage 1D exposes normalized metadata in the app:

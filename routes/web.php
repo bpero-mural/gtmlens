@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Jobs\RunSalesforceSourceSync;
 use App\Models\MetadataEntity;
 use App\Models\SalesforceOrg;
 use App\Models\SyncRun;
@@ -77,5 +78,18 @@ Route::middleware('auth')->group(function (): void {
             'syncRuns' => SyncRun::query()->with('salesforceOrg')->latest()->limit(50)->get(),
         ]);
     })->name('sync-runs.index');
+
+    Route::post('/sync-runs/source-sync', function () {
+        $validated = request()->validate([
+            'org_alias' => ['required', 'string', 'max:80', 'regex:/^[A-Za-z0-9_.-]+$/'],
+        ]);
+
+        RunSalesforceSourceSync::dispatch($validated['org_alias']);
+
+        return redirect()
+            ->route('sync-runs.index')
+            ->with('status', "Salesforce source sync was queued for [{$validated['org_alias']}]. Run the queue worker to execute it.");
+    })->name('sync-runs.source-sync.store');
+
     Route::view('/admin', 'pages.admin.index')->name('admin.index');
 });

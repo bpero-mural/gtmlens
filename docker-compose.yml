@@ -45,6 +45,47 @@ services:
       timeout: 5s
       retries: 5
 
+  queue:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+    command: php artisan queue:work database --queue=salesforce-sync,default --sleep=3 --tries=1 --timeout=900
+    environment:
+      APP_NAME: "GTM Lens"
+      APP_ENV: local
+      APP_DEBUG: "true"
+      APP_URL: http://localhost
+      SF_AUTOUPDATE_DISABLE: "true"
+      DB_CONNECTION: pgsql
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_DATABASE: mural_lens
+      DB_USERNAME: app
+      DB_PASSWORD: app
+      QUEUE_CONNECTION: database
+      CACHE_STORE: database
+      SESSION_DRIVER: database
+      FILESYSTEM_DISK: local
+      SALESFORCE_API_VERSION: "61.0"
+      SECURITY_ALLOW_APEX_STORAGE: "false"
+      SECURITY_ALLOW_RAW_METADATA_VIEW: "false"
+      LOCAL_ADMIN_EMAIL: admin@example.test
+      LOCAL_ADMIN_PASSWORD: password
+      LOCAL_ADMIN_NAME: "Local Admin"
+      LOCAL_ADMIN_ENSURE_ON_BOOT: "false"
+    volumes:
+      - .:/var/www/html
+      - salesforce_cli_sf:/root/.sf
+      - ${USERPROFILE}/.sf:/host/.sf:ro
+      - salesforce_cli_sfdx:/root/.sfdx
+      - ${USERPROFILE}/.sfdx:/host/.sfdx:ro
+      - app_node_modules:/var/www/html/node_modules
+      - snapshot_storage:/var/www/html/storage/app/snapshots
+    depends_on:
+      app:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
   web:
     image: nginx:1.29-alpine
     ports:

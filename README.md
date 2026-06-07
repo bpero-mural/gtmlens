@@ -143,6 +143,26 @@ The metadata browser supports case-insensitive search, type filters, status filt
 
 Detail pages show the entity key, label, parent key, status, latest version payload path, normalized attributes, and generated search document content.
 
+
+## Stage 1D.1 UI-Triggered Source Sync
+
+Stage 1D.1 lets an authenticated user queue the source retrieve and normalization flow from the app.
+
+Open:
+
+```text
+http://localhost:8080/sync-runs
+```
+
+Enter a Salesforce CLI org alias such as `stage` and choose `Run source sync`. The UI dispatches a queued job that runs:
+
+```bash
+php artisan salesforce:source-retrieve stage
+php artisan salesforce:source-normalize --latest --orgAlias=stage
+```
+
+In Docker, the `queue` service processes the `salesforce-sync` queue automatically when `docker compose up --build` is running. The UI still does not implement OAuth and still does not store Salesforce tokens.
+
 ## Metadata Storage Direction
 
 GTM Lens will use a hybrid storage model:
